@@ -32,6 +32,7 @@ public class UserController {
 
     @PostMapping("/generateToken")
     public String AuthenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+        System.out.println("TOKEN ENDPOINT HIT");
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
         );
@@ -41,6 +42,10 @@ public class UserController {
         } else {
             throw new UsernameNotFoundException("Invalid user request!");
         }
+    }
 
+    @GetMapping("/user")
+    public String userProfile() {
+        return "User Profile";
     }
 }
